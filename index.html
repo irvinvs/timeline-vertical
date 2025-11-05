@@ -7,6 +7,7 @@
 
 <style>
 /* Aquí pega todo tu CSS */
+
   :root{
   --vt-line:#e2e8f0;   /* color de la línea vertical */
   --vt-dot:#7c3aed;    /* color del punto (morado) */
@@ -30,24 +31,26 @@ body{
 
 .vt-title{
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 2.5rem;
+  margin-bottom: 3rem;
 }
 
-/* GRID: columna izquierda | línea | columna derecha */
+/* GRID: izquierda | línea | derecha */
 .vt-grid{
   display: grid;
   grid-template-columns: 1fr 2px 1fr;
-  gap: 2rem 3rem;
+  row-gap: 4rem;     /* <-- más separación vertical */
+  column-gap: 3rem;
   position: relative;
 }
 
 /* Línea central */
 .vt-line{
-  grid-row: 1 / -1;
+  grid-column: 2;
+  grid-row: 1 / -1;  /* ocupa todas las filas */
   background: var(--vt-line);
-  align-self: stretch;
+  align-self: stretch;  /* <-- se estira completamente */
 }
 
 /* Items */
@@ -55,15 +58,20 @@ body{
   position: relative;
 }
 
-/* Alternar lados */
-.vt-item:nth-of-type(odd){ grid-column: 1; text-align: right; }
-.vt-item:nth-of-type(even){ grid-column: 3; }
+/* Alternar lados izquierda / derecha */
+.vt-item:nth-of-type(odd){
+  grid-column: 1;
+  text-align: right;
+}
+.vt-item:nth-of-type(even){
+  grid-column: 3;
+}
 
 /* Punto en la línea */
 .vt-item::before{
   content:"";
   position: absolute;
-  top: 0.5rem;
+  top: 0.4rem;
   width: 14px;
   height: 14px;
   border-radius: 50%;
@@ -71,20 +79,24 @@ body{
   box-shadow: 0 0 0 4px var(--vt-dot);
 }
 
-.vt-item:nth-of-type(odd)::before{ right:-1.5rem; }
-.vt-item:nth-of-type(even)::before{ left:-1.5rem; }
+.vt-item:nth-of-type(odd)::before{
+  right:-1.5rem;
+}
+.vt-item:nth-of-type(even)::before{
+  left:-1.5rem;
+}
 
 .vt-date{
   display:block;
   font-size:0.9rem;
   font-weight:600;
   color:var(--vt-date);
-  margin-bottom:0.25rem;
+  margin-bottom:0.3rem;
 }
 
 .vt-heading{
-  margin:0 0 0.25rem;
-  font-size:1.15rem;
+  margin:0 0 0.35rem;
+  font-size:1.2rem;
   font-weight:700;
 }
 
@@ -95,11 +107,12 @@ body{
   line-height:1.6;
 }
 
-/* Versión móvil (una sola columna) */
+/* Móvil: una sola columna */
 @media (max-width: 720px){
   .vt-grid{
     grid-template-columns: 2px 1fr;
-    gap:1.75rem 1.25rem;
+    row-gap: 3rem;
+    column-gap:1.5rem;
   }
   .vt-line{
     grid-column:1;
@@ -114,15 +127,7 @@ body{
   }
 }
 
-  /* MÁS ESPACIO ENTRE LOS EVENTOS */
-.vt-grid{
-  row-gap: 4rem; /* antes eran ~2rem, esto duplica la separación */
-}
-
-/* HAZ QUE LA LÍNEA SE ESTIRE COMPLETA */
-.vt-line{
-  align-self: stretch;
-}
+  
 
 </style>
 
