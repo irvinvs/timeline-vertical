@@ -45,9 +45,9 @@ body{
 
 /* Línea central */
 .vt-line{
-  grid-column: 2;
   grid-row: 1 / -1;
   background: var(--vt-line);
+  align-self: stretch;
 }
 
 /* Items */
@@ -112,6 +112,16 @@ body{
     left:-1.25rem !important;
     right:auto !important;
   }
+}
+
+  /* MÁS ESPACIO ENTRE LOS EVENTOS */
+.vt-grid{
+  row-gap: 4rem; /* antes eran ~2rem, esto duplica la separación */
+}
+
+/* HAZ QUE LA LÍNEA SE ESTIRE COMPLETA */
+.vt-line{
+  align-self: stretch;
 }
 
 </style>
