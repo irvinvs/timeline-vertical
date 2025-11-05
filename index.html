@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Línea de tiempo</title>
+
+<style>
+/* Aquí pega todo tu CSS */
+  :root{
+  --vt-line:#e2e8f0;   /* color de la línea vertical */
+  --vt-dot:#7c3aed;    /* color del punto (morado) */
+  --vt-date:#6b7280;   /* color de la fecha */
+  --vt-text:#1f2937;   /* color del texto */
+}
+
+*{ box-sizing:border-box; }
+
+body{
+  background:#ffffff;
+  margin:0;
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,sans-serif;
+}
+
+.vt{
+  max-width: 980px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.vt-title{
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+/* GRID: columna izquierda | línea | columna derecha */
+.vt-grid{
+  display: grid;
+  grid-template-columns: 1fr 2px 1fr;
+  gap: 2rem 3rem;
+  position: relative;
+}
+
+/* Línea central */
+.vt-line{
+  grid-column: 2;
+  grid-row: 1 / -1;
+  background: var(--vt-line);
+}
+
+/* Items */
+.vt-item{
+  position: relative;
+}
+
+/* Alternar lados */
+.vt-item:nth-of-type(odd){ grid-column: 1; text-align: right; }
+.vt-item:nth-of-type(even){ grid-column: 3; }
+
+/* Punto en la línea */
+.vt-item::before{
+  content:"";
+  position: absolute;
+  top: 0.5rem;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background:#fff;
+  box-shadow: 0 0 0 4px var(--vt-dot);
+}
+
+.vt-item:nth-of-type(odd)::before{ right:-1.5rem; }
+.vt-item:nth-of-type(even)::before{ left:-1.5rem; }
+
+.vt-date{
+  display:block;
+  font-size:0.9rem;
+  font-weight:600;
+  color:var(--vt-date);
+  margin-bottom:0.25rem;
+}
+
+.vt-heading{
+  margin:0 0 0.25rem;
+  font-size:1.15rem;
+  font-weight:700;
+}
+
+.vt-text{
+  margin:0;
+  font-size:1rem;
+  color:var(--vt-text);
+  line-height:1.6;
+}
+
+/* Versión móvil (una sola columna) */
+@media (max-width: 720px){
+  .vt-grid{
+    grid-template-columns: 2px 1fr;
+    gap:1.75rem 1.25rem;
+  }
+  .vt-line{
+    grid-column:1;
+  }
+  .vt-item{
+    grid-column:2;
+    text-align:left !important;
+  }
+  .vt-item::before{
+    left:-1.25rem !important;
+    right:auto !important;
+  }
+}
+
+</style>
+
+</head>
+<body>
+  <!-- Aquí pega tu HTML de la timeline -->
+  <section class="vt">
+  <h2 class="vt-title">Línea de tiempo</h2>
+
+  <div class="vt-grid">
+    <div class="vt-line"></div>
+
+    <div class="vt-item">
+      <span class="vt-date">12 Ene 2026</span>
+      <h3 class="vt-heading">Apertura de registro</h3>
+      <p class="vt-text">Se habilita el formulario en línea para participantes y ponentes.</p>
+    </div>
+
+    <div class="vt-item">
+      <span class="vt-date">05 Feb 2026</span>
+      <h3 class="vt-heading">Publicación de agenda</h3>
+      <p class="vt-text">Se publica el programa preliminar con horarios y sedes.</p>
+    </div>
+
+    <div class="vt-item">
+      <span class="vt-date">28 Feb 2026</span>
+      <h3 class="vt-heading">Cierre de registro</h3>
+      <p class="vt-text">Último día para inscribirse con costo preferencial.</p>
+    </div>
+
+    <div class="vt-item">
+      <span class="vt-date">10 Mar 2026</span>
+      <h3 class="vt-heading">Evento</h3>
+      <p class="vt-text">Ceremonia de inauguración, conferencias y actividades.</p>
+    </div>
+
+  </div>
+</section>
+
+</body>
+</html>
